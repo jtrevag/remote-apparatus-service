@@ -25,6 +25,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
+var lightServiceApp = express();
+var lightService = require('./routes/lightservice.js');
+lightServiceApp.use('/', lightService);
+
+app.use('/lightService', lightServiceApp);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
