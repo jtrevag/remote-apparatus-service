@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var lightService = require('./routes/lightservice.js');
 
 var app = express();
 
@@ -24,10 +25,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/lightService', lightService);
+//var lightServiceApp = require('express');
 
-var lightServiceApp = express();
-var lightService = require('./routes/lightservice.js');
-lightServiceApp.use('/', lightService);
+
 
 app.use('/lightService', lightServiceApp);
 
