@@ -52,3 +52,5 @@ router.get('/living_room/back/off', function(req, res) {
     exec("/var/www/rfoutlet/codesend 4289804", puts);
     // Return JSON(?)
 });
+
+module.exports = router;

@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var lightService = require('./routes/lightservice.js');
+var lightService = require('./routes/lightservice');
 
 var app = express();
 
@@ -25,12 +25,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+
+//var lightServiceApp = express();
 app.use('/lightService', lightService);
-//var lightServiceApp = require('express');
 
 
-
-app.use('/lightService', lightServiceApp);
+//app.use('/lightService', lightServiceApp);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
