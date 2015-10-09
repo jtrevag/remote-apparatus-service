@@ -17,7 +17,7 @@ router.route('/computer_room')
          res.json({ message: 'Light turned off!' });
     }
     else{
-        res.json({ message: 'Invalid state sent.' });
+        res.json({ message: 'Invalid state sent: ' + state });
     }
 })    
 
