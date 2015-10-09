@@ -5,9 +5,10 @@ var exec = require('child_process').exec;
 
 function puts(error, stdout, stderr) { sys.puts(stdout); };
 
-router.route('/computer_room')
+router.route('/')
 .put(function(req,res,next){
     var state = req.body.state;
+    var room = req.body.room;
     if(state === 'on'){
          exec("/var/www/rfoutlet/codesend 4281795", puts);
          res.json({ message: 'Light turned on!' });
