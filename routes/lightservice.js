@@ -5,17 +5,37 @@ var exec = require('child_process').exec;
 
 function puts(error, stdout, stderr) { sys.puts(stdout); };
 
+router.route('/computer_room')
+.put(function(req,res,next){
+    var state = req.body.state;
+    if(state === 'on'){
+         exec("/var/www/rfoutlet/codesend 4281795", puts);
+         res.json({ message: 'Light turned on!' });
+    }
+    else if(state === 'off'){
+         exec("/var/www/rfoutlet/codesend 4281804", puts);
+         res.json({ message: 'Light turned off!' });
+    }
+    else{
+        res.json({ message: 'Invalid state sent.' });
+    }
+})    
+
+
+/*
 router.get('/computer_room/on', function(req, res) {
     // Execute codesend
     exec("/var/www/rfoutlet/codesend 4281795", puts);
     // Return JSON(?)
 });
+    
 
 router.get('/computer_room/off', function(req, res) {
     // Execute codesend
     exec("/var/www/rfoutlet/codesend 4281804", puts);
     // Return JSON(?)
 });
+*/
 
 router.get('/bedroom/on', function(req, res) {
     // Execute codesend
