@@ -8,7 +8,7 @@ function puts(error, stdout, stderr) { sys.puts(stdout); };
 
 function createLights(){
     //console.log(light);
-    light.collection.find(function (err, lights) {
+    light.find(function (err, lights) {
         if (err) return console.error(err);
     console.log(lights);
     return lights;
