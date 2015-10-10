@@ -9,6 +9,12 @@ var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/light_tables');
 
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function (callback) {
+  // yay!
+});
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var lightService = require('./routes/lightservice');
