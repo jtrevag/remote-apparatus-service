@@ -16,10 +16,7 @@ router.route('/')
     
     if(check === 'true'){
         collection.find({ room: roomName },{},function(e,docs){
-            console.log(docs.status);
-            console.log(docs.room);
-            console.log(docs.on_code);
-            console.log(docs.off_code);
+            console.log(docs);
             res.json(docs);
             
         });
