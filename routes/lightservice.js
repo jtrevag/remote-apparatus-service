@@ -8,16 +8,20 @@ function puts(error, stdout, stderr) { sys.puts(stdout); };
 
 router.route('/')
 .put(function(req,res,next){
-    
     var state = req.body.state;
     var roomName = req.body.room;
     var check = req.body.check;
+    var db = req.db;
+    var collection = db.get('light_collection');
+    
     if(check === 'true'){
-        console.log("finding lights");
-        var db = req.db;
-        var collection = db.get('light_collection');
         collection.find({ room: roomName },{},function(e,docs){
+            console.log(docs.status);
+            console.log(docs.room);
+            console.log(docs.on_code);
+            console.log(docs.off_code);
             res.json(docs);
+            
         });
     }
     else if(state === 'on'){
