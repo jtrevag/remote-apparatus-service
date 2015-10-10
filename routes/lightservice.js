@@ -10,13 +10,13 @@ router.route('/')
 .put(function(req,res,next){
     
     var state = req.body.state;
-    var room = req.body.room;
+    var roomName = req.body.room;
     var check = req.body.check;
     if(check === 'true'){
         console.log("finding lights");
         var db = req.db;
         var collection = db.get('light_collection');
-        collection.find({},{},function(e,docs){
+        collection.find({ room: roomName },{},function(e,docs){
             res.json(docs);
         });
     }
