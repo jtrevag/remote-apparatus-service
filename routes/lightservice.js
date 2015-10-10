@@ -11,6 +11,7 @@ function createLights(){
     light.find(function (err, lights) {
         if (err) return console.error(err);
     console.log(lights);
+    return lights;
     });
 }
 
@@ -22,8 +23,7 @@ router.route('/')
     var check = req.body.check;
     if(check === 'true'){
         console.log("finding lights");
-        createLights();
-        res.json({message: "Lights returned"});
+        res.json(createLights());
     }
     else if(state === 'on'){
          exec("/var/www/rfoutlet/codesend 4281795", puts);
