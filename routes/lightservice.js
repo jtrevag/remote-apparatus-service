@@ -2,28 +2,23 @@ var express = require('express');
 var router = express.Router();
 var sys = require('sys');
 var exec = require('child_process').exec;
-var light = require('../objects/light');
 
 function puts(error, stdout, stderr) { sys.puts(stdout); };
-
-function createLights(){
-    //console.log(light);
-    light.find(function (err, lights) {
-        if (err) return console.error(err);
-    console.log(lights);
-    return lights;
-    });
-}
 
 
 router.route('/')
 .put(function(req,res,next){
+    
     var state = req.body.state;
     var room = req.body.room;
     var check = req.body.check;
     if(check === 'true'){
         console.log("finding lights");
-        res.json(createLights());
+        var db = req.db;
+        var collection = db.get('light_collection');
+        collection.find({},{},function(e,docs){
+            res.json(docs);
+        });
     }
     else if(state === 'on'){
          exec("/var/www/rfoutlet/codesend 4281795", puts);
