@@ -20,6 +20,7 @@ router.route('/')
     var room = req.body.room;
     var check = req.body.check;
     if(check === 'true'){
+        console.log("finding lights");
         createLights();
     }
     else if(state === 'on'){
