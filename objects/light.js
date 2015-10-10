@@ -1,6 +1,8 @@
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
+console.log("Setting up light schema");
+
 var LightSchema   = new Schema({
     room: String,
     status: String,
