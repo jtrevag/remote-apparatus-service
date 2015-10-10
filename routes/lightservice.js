@@ -18,7 +18,7 @@ router.route('/')
         collection.find({ room: roomName },{},function(e,docs){
             console.log(docs);
             res.json(docs);
-            
+            console.log(docs["room"]);
         });
     }
     else if(state === 'on'){
