@@ -10,4 +10,4 @@ var LightSchema   = new Schema({
     off_code: String
 });
 
-module.exports = mongoose.model('Light', LightSchema);
+module.exports = mongoose.model('light', LightSchema);
