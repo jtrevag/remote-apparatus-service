@@ -14,15 +14,14 @@ router.route('/')
     var db = req.db;
     var collection = db.get('light_collection');
     
-    if(check === 'true'){
+    //TODO: test and see if this garbage works.
+    if(state === 'on' && roomName != null){
         collection.find({ room: roomName },{},function(e,docs){
-            console.log(docs);
-            console.log(docs[0]);
-            console.log(docs[0]["room"]);
+            exec("/var/www/rfoutlet/codesend " + docs[0]["on_code"], puts);
+            res.json({ message: 'Light turned on for room: ' + docs[0]["room"] + '!' });
+            //console.log(docs[0]["room"]);
             res.json(docs);
         });
-    }
-    else if(state === 'on'){
          exec("/var/www/rfoutlet/codesend 4281795", puts);
          res.json({ message: 'Light turned on!' });
     }
