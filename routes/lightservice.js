@@ -18,7 +18,9 @@ router.route('/')
         collection.find({ room: roomName },{},function(e,docs){
             console.log(docs);
             res.json(docs);
-            console.log(docs["room"]);
+            var val = JSON.parse(docs);
+            console.log(val);
+            console.log(val["room"]);
         });
     }
     else if(state === 'on'){
