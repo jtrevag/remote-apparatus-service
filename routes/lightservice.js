@@ -7,6 +7,7 @@ var light = require('../objects/light');
 function puts(error, stdout, stderr) { sys.puts(stdout); };
 
 function createLights(){
+    console.log(light);
     light.find(function (err, lights) {
         if (err) return console.error(err);
     console.log(lights);
@@ -22,6 +23,7 @@ router.route('/')
     if(check === 'true'){
         console.log("finding lights");
         createLights();
+        res.json({message: "Lights returned"});
     }
     else if(state === 'on'){
          exec("/var/www/rfoutlet/codesend 4281795", puts);
