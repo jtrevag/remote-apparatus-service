@@ -19,73 +19,17 @@ router.route('/')
         collection.find({ room: roomName },{},function(e,docs){
             exec("/var/www/rfoutlet/codesend " + docs[0]["on_code"], puts);
             res.json({ message: 'Light turned on for room: ' + docs[0]["room"] + '!' });
-            //console.log(docs[0]["room"]);
-            res.json(docs);
         });
     }
     else if(state === 'off'){
          collection.find({ room: roomName },{},function(e,docs){
             exec("/var/www/rfoutlet/codesend " + docs[0]["off_code"], puts);
-            res.json({ message: 'Light turned on for room: ' + docs[0]["room"] + '!' });
-            //console.log(docs[0]["room"]);
-            res.json(docs);
+            res.json({ message: 'Light turned off for room: ' + docs[0]["room"] + '!' });
         });
     }
     else{
         res.json({ message: 'Invalid state sent: ' + state });
     }
 });    
-
-
-/*
-router.get('/computer_room/on', function(req, res) {
-    // Execute codesend
-    exec("/var/www/rfoutlet/codesend 4281795", puts);
-    // Return JSON(?)
-});
-    
-
-router.get('/computer_room/off', function(req, res) {
-    // Execute codesend
-    exec("/var/www/rfoutlet/codesend 4281804", puts);
-    // Return JSON(?)
-});
-*/
-
-router.get('/bedroom/on', function(req, res) {
-    // Execute codesend
-    exec("/var/www/rfoutlet/codesend 4282115", puts);
-    // Return JSON(?)
-});
-
-router.get('/bedroom/off', function(req, res) {
-    // Execute codesend
-    exec("/var/www/rfoutlet/codesend 4282124", puts);
-    // Return JSON(?)
-});
-
-router.get('/living_room/front/on', function(req, res) {
-    // Execute codesend
-    exec("/var/www/rfoutlet/codesend 4283651", puts);
-    // Return JSON(?)
-});
-
-router.get('/living_room/front/off', function(req, res) {
-    // Execute codesend
-    exec("/var/www/rfoutlet/codesend 4283660", puts);
-    // Return JSON(?)
-});
-
-router.get('/living_room/back/on', function(req, res) {
-    // Execute codesend
-    exec("/var/www/rfoutlet/codesend 4289795", puts);
-    // Return JSON(?)
-});
-
-router.get('/living_room/back/off', function(req, res) {
-    // Execute codesend
-    exec("/var/www/rfoutlet/codesend 4289804", puts);
-    // Return JSON(?)
-});
 
 module.exports = router;
