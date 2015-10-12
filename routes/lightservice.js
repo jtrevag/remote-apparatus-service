@@ -22,12 +22,14 @@ router.route('/')
             //console.log(docs[0]["room"]);
             res.json(docs);
         });
-         exec("/var/www/rfoutlet/codesend 4281795", puts);
-         res.json({ message: 'Light turned on!' });
     }
     else if(state === 'off'){
-         exec("/var/www/rfoutlet/codesend 4281804", puts);
-         res.json({ message: 'Light turned off!' });
+         collection.find({ room: roomName },{},function(e,docs){
+            exec("/var/www/rfoutlet/codesend " + docs[0]["off_code"], puts);
+            res.json({ message: 'Light turned on for room: ' + docs[0]["room"] + '!' });
+            //console.log(docs[0]["room"]);
+            res.json(docs);
+        });
     }
     else{
         res.json({ message: 'Invalid state sent: ' + state });
