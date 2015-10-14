@@ -6,11 +6,12 @@ var exec = require('child_process').exec;
 function puts(error, stdout, stderr) { sys.puts(stdout); };
 
 function sendLightCode(lightCode){
+    var command = "";
     for(var x = 183; x <= 186; x++){
-        exec("sudo /var/www/rfoutlet/codesend " + lightCode + " " + x, puts); 
-        console.log("/var/www/rfoutlet/codesend " + lightCode + " " + x);
+        command.concat("/var/www/rfoutlet/codesend " + lightCode + " " + x + ";");
+        exec(command, puts); 
+        console.log(command);
     }
-    exec('whoami', puts);
 }
 
 router.route('/')
