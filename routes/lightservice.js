@@ -8,7 +8,7 @@ function puts(error, stdout, stderr) { sys.puts(stdout); };
 function sendLightCode(lightCode){
     var command = "";
     for(var x = 183; x <= 186; x++){
-        command.concat("/var/www/rfoutlet/codesend " + lightCode + " " + x + ";");
+        command = command.concat("/var/www/rfoutlet/codesend " + lightCode + " " + x + ";");
         console.log(command);
     }
     exec(command, puts);
