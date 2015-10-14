@@ -22,8 +22,8 @@ router.route('/')
     //TODO: test and see if this garbage works.
     if(state === 'on' && roomName != null){
         collection.find({ room: roomName },{},function(e,docs){
-            //sendLightCode(docs[0]["on_code"]);
-            exec("/var/www/rfoutlet/codesend " + docs[0]["on_code"] + " 185;", puts);   
+            sendLightCode(docs[0]["on_code"]);
+            //exec("/var/www/rfoutlet/codesend " + docs[0]["on_code"] + " 185;", puts);   
             res.json({ message: 'Light turned on for room: ' + docs[0]["room"] + '!' });
         });
     }
