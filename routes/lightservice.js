@@ -8,15 +8,16 @@ function puts(error, stdout, stderr) { console.log(stdout); };
 function sendLightCode(lightCode){
     var command = "";
     for(var x = 183; x <= 185; x++){
-        command = command.concat("/var/www/rfoutlet/codesend " + lightCode + " " + x + " && ");
-        command = command.concat("sleep 1 ");
-        if(x < 185){
-            command = command.concat("&& ")
-        }
-        
+        command = "/var/www/rfoutlet/codesend " + lightCode + " " + x
+        setTimeout(exec(command, puts), 3000);
+        //command = command.concat("/var/www/rfoutlet/codesend " + lightCode + " " + x + " && ");
+        //command = command.concat("sleep 1 ");
+        //if(x < 185){
+        //    command = command.concat("&& ")
+        //}
         console.log(command);
     }
-    exec(command, puts);
+    //exec(command, puts);
 }
 
 router.route('/')
