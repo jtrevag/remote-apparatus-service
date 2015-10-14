@@ -3,13 +3,13 @@ var router = express.Router();
 var sys = require('sys');
 var exec = require('child_process').exec;
 
-function puts(error, stdout, stderr) { sys.puts(stdout); };
+function puts(error, stdout, stderr) { console.log(stdout); };
 
 function sendLightCode(lightCode){
     var command = "";
     for(var x = 183; x <= 185; x++){
         command = command.concat("/var/www/rfoutlet/codesend " + lightCode + " " + x + " && ");
-        command = command.concat(" sleep(1) && ");
+        command = command.concat(" sleep 1 && ");
         console.log(command);
     }
     exec(command, puts);
