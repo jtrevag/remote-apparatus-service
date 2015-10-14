@@ -3,20 +3,6 @@ var router = express.Router();
 var sys = require('sys');
 var exec = require('child_process').exec;
 
-function puts(error, stdout, stderr) { console.log(stdout); };
-
-var executeCommand = function (lightCode, pulse){
-    var command = "/var/www/rfoutlet/codesend " + lightCode + " " + pulse;
-    exec(command, puts);
-    console.log(command);
-}
-
-function sendLightCode(lightCode){
-    for(var pulse = 183; pulse <= 185; pulse++){
-        setTimeout(executeCommand(lightCode, pulse), 3000);
-    }
-}
-
 router.route('/')
 .put(function(req,res,next){
     var state = req.body.state;
@@ -44,3 +30,17 @@ router.route('/')
 });    
 
 module.exports = router;
+
+var puts = function (error, stdout, stderr) { console.log(stdout); };
+
+var executeCommand = function (lightCode, pulse){
+    var command = "/var/www/rfoutlet/codesend " + lightCode + " " + pulse;
+    exec(command, puts);
+    console.log(command);
+}
+
+var sendLightCode = function (lightCode){
+    for(var pulse = 183; pulse <= 185; pulse++){
+        setTimeout(executeCommand(lightCode, pulse), 3000);
+    }
+}
