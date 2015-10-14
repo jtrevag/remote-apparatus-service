@@ -5,23 +5,16 @@ var exec = require('child_process').exec;
 
 function puts(error, stdout, stderr) { console.log(stdout); };
 
-var executeCommand = function (command){
+var executeCommand = function (lightCode, pulse){
+    var command = "/var/www/rfoutlet/codesend " + lightCode + " " + pulse;
     exec(command, puts);
+    console.log(command);
 }
 
 function sendLightCode(lightCode){
-    var command = "";
-    for(var x = 183; x <= 185; x++){
-        command = "/var/www/rfoutlet/codesend " + lightCode + " " + x
-        setTimeout(executeCommand(command), 3000);
-        //command = command.concat("/var/www/rfoutlet/codesend " + lightCode + " " + x + " && ");
-        //command = command.concat("sleep 1 ");
-        //if(x < 185){
-        //    command = command.concat("&& ")
-        //}
-        console.log(command);
+    for(var pulse = 183; pulse <= 185; pulse++){
+        setTimeout(executeCommand(lightCode, pulse), 3000);
     }
-    //exec(command, puts);
 }
 
 router.route('/')
