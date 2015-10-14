@@ -9,9 +9,9 @@ function sendLightCode(lightCode){
     var command = "";
     for(var x = 183; x <= 186; x++){
         command.concat("/var/www/rfoutlet/codesend " + lightCode + " " + x + ";");
-        exec(command, puts); 
         console.log(command);
     }
+    exec(command, puts);
 }
 
 router.route('/')
