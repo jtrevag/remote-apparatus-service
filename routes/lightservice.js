@@ -7,10 +7,10 @@ function puts(error, stdout, stderr) { sys.puts(stdout); };
 
 function sendLightCode(lightCode){
     for(var x = 183; x <= 186; x++){
-        console.log("/var/www/rfoutlet/codesend " + lightCode + " " + x);
         exec("sudo /var/www/rfoutlet/codesend " + lightCode + " " + x, puts); 
-        exec("whoami");
+        console.log("/var/www/rfoutlet/codesend " + lightCode + " " + x);
     }
+    exec('whoami', puts);
 }
 
 router.route('/')
