@@ -5,11 +5,15 @@ var exec = require('child_process').exec;
 
 function puts(error, stdout, stderr) { console.log(stdout); };
 
+var executeCommand = function (command){
+    exec(command, puts);
+}
+
 function sendLightCode(lightCode){
     var command = "";
     for(var x = 183; x <= 185; x++){
         command = "/var/www/rfoutlet/codesend " + lightCode + " " + x
-        setTimeout(exec(command, puts), 3000);
+        setTimeout(executeCommand(command), 3000);
         //command = command.concat("/var/www/rfoutlet/codesend " + lightCode + " " + x + " && ");
         //command = command.concat("sleep 1 ");
         //if(x < 185){
