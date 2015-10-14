@@ -8,7 +8,8 @@ function puts(error, stdout, stderr) { sys.puts(stdout); };
 function sendLightCode(lightCode){
     for(var x = 183; x <= 186; x++){
         console.log("/var/www/rfoutlet/codesend " + lightCode + " " + x);
-        exec("/var/www/rfoutlet/codesend " + lightCode + " " + x, puts);    
+        exec("sudo /var/www/rfoutlet/codesend " + lightCode + " " + x, puts); 
+        exec("whoami");
     }
 }
 
