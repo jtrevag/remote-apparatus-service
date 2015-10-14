@@ -6,7 +6,7 @@ var exec = require('child_process').exec;
 function puts(error, stdout, stderr) { sys.puts(stdout); };
 
 function sendLightCode(lightCode){
-    for(var x = 183; x < 186; x++){
+    for(var x = 183; x <= 186; x++){
         console.log("/var/www/rfoutlet/codesend " + lightCode + " " + x);
         exec("/var/www/rfoutlet/codesend " + lightCode + " " + x, puts);    
     }
@@ -22,7 +22,8 @@ router.route('/')
     //TODO: test and see if this garbage works.
     if(state === 'on' && roomName != null){
         collection.find({ room: roomName },{},function(e,docs){
-            sendLightCode(docs[0]["on_code"]);
+            //sendLightCode(docs[0]["on_code"]);
+            exec("/var/www/rfoutlet/codesend " + docs[0]["on_code"] + " 185;", puts);   
             res.json({ message: 'Light turned on for room: ' + docs[0]["room"] + '!' });
         });
     }
