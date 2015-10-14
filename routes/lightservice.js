@@ -9,7 +9,11 @@ function sendLightCode(lightCode){
     var command = "";
     for(var x = 183; x <= 185; x++){
         command = command.concat("/var/www/rfoutlet/codesend " + lightCode + " " + x + " && ");
-        command = command.concat(" sleep 1 && ");
+        command = command.concat("sleep 1 ");
+        if(x < 185){
+            command = command.concat("&& ")
+        }
+        
         console.log(command);
     }
     exec(command, puts);
