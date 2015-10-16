@@ -14,7 +14,6 @@ router.route('/')
     if(state === 'on' && roomName != null){
         collection.find({ room: roomName },{},function(e,docs){
             sendLightCode(docs[0]["on_code"]);
-            //exec("/var/www/rfoutlet/codesend " + docs[0]["on_code"] + " 185;", puts);   
             res.json({ message: 'Light turned on for room: ' + docs[0]["room"] + '!' });
         });
     }
@@ -41,6 +40,6 @@ var executeCommand = function (lightCode, pulse){
 
 var sendLightCode = function (lightCode){
     for(var pulse = 183; pulse <= 185; pulse++){
-        setTimeout(executeCommand(lightCode, pulse), 3000);
+        setTimeout(executeCommand(lightCode, pulse), 300);
     }
 }
