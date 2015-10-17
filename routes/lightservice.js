@@ -34,14 +34,14 @@ var puts = function (error, stdout, stderr) { console.log(stdout); };
 
 var executeCommand = function (lightCode, pulse){
     var interval = setInterval(function(){
-        if(pulse > 186){
+        if(pulse > 185){
             clearInterval(interval);
         }
         var command = "/var/www/rfoutlet/codesend " + lightCode + " " + pulse;
         exec(command, puts);
         console.log(command)
         pulse++;
-    }, 3000)
+    }, 500)
     //var command = "/var/www/rfoutlet/codesend " + lightCode + " " + pulse;
     //setTimeout(function() {exec(command, puts)}, 3000);
     //setTimeout(function() {console.log(command)}, 3000);
