@@ -34,12 +34,13 @@ var puts = function (error, stdout, stderr) { console.log(stdout); };
 
 var executeCommand = function (lightCode, pulse){
     var command = "/var/www/rfoutlet/codesend " + lightCode + " " + pulse;
-    exec(command, puts);
-    console.log(command);
+    setTimeout(function() {exec(command, puts)}, 3000);
+    setTimeout(function() {console.log(command)}, 3000);
 }
 
 var sendLightCode = function (lightCode){
     for(var pulse = 183; pulse <= 185; pulse++){
-        setTimeout(function() {executeCommand(lightCode, pulse)}, 3000);
+        executeCommand(lightCode, pulse);
     }
 }
+
