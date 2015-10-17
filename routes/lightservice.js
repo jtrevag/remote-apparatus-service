@@ -40,6 +40,6 @@ var executeCommand = function (lightCode, pulse){
 
 var sendLightCode = function (lightCode){
     for(var pulse = 183; pulse <= 185; pulse++){
-        setTimeout(executeCommand(lightCode, pulse), 3000);
+        setTimeout(function() {executeCommand(lightCode, pulse)}, 3000);
     }
 }
