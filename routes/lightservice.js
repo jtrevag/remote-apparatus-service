@@ -15,14 +15,14 @@ router.route('/')
         collection.find({ room: roomName },{},function(e,docs){
             sendLightCode(docs[0]["on_code"]);
             updateLightCollection(collection, roomName, "on");
-            res.json({ message: 'Light turned on for room: ' + docs[0]["room"] + '!' });
+            res.json({ message: 'Light turned on for room: ' + docs[0]["room"] + '!', status: 'on' });
         });
     }
     else if(state === 'off'){
          collection.find({ room: roomName },{},function(e,docs){
             sendLightCode(docs[0]["off_code"]);
             updateLightCollection(collection, roomName, "off");
-            res.json({ message: 'Light turned off for room: ' + docs[0]["room"] + '!' });
+            res.json({ message: 'Light turned off for room: ' + docs[0]["room"] + '!', status: 'off' });
         });
     }
     else{
