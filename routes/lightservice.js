@@ -14,12 +14,14 @@ router.route('/')
     if(state === 'on' && roomName != null){
         collection.find({ room: roomName },{},function(e,docs){
             sendLightCode(docs[0]["on_code"]);
+            updateLightCollection(collection, roomName, "on");
             res.json({ message: 'Light turned on for room: ' + docs[0]["room"] + '!' });
         });
     }
     else if(state === 'off'){
          collection.find({ room: roomName },{},function(e,docs){
             sendLightCode(docs[0]["off_code"]);
+            updateLightCollection(collection, roomName, "off");
             res.json({ message: 'Light turned off for room: ' + docs[0]["room"] + '!' });
         });
     }
@@ -42,15 +44,13 @@ var executeCommand = function (lightCode, pulse){
         console.log(command)
         pulse++;
     }, 500)
-    //var command = "/var/www/rfoutlet/codesend " + lightCode + " " + pulse;
-    //setTimeout(function() {exec(command, puts)}, 3000);
-    //setTimeout(function() {console.log(command)}, 3000);
 }
 
 var sendLightCode = function (lightCode){
     executeCommand(lightCode, 183);
-    //for(var pulse = 183; pulse <= 185; pulse++){
-    //    executeCommand(lightCode, pulse);
-    //}
+}
+
+var updateLightCollection = function(collection, roomName, statusCode){
+    collection.update({room : roomName}, {$set: {status: statusCode}});
 }
 
