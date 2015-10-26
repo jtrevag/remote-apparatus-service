@@ -4,13 +4,25 @@ var sys = require('sys');
 var exec = require('child_process').exec;
 
 router.route('/')
+.get(function(req, res, next){
+    var roomName = req.body.room;  
+    var db = req.db;
+    var collection = db.get('light_collection');
+    if(roomName != null){
+        collection.find({ room: roomName },{},function(e,docs){
+            res.json({status: docs[0]["status"]});
+        });
+    }
+    else{
+        res.json({message: 'Invalid room name.'});
+    }
+})
 .put(function(req,res,next){
     var state = req.body.state;
     var roomName = req.body.room;
     var db = req.db;
     var collection = db.get('light_collection');
     
-    //TODO: test and see if this garbage works.
     if(state === 'on' && roomName != null){
         collection.find({ room: roomName },{},function(e,docs){
             sendLightCode(docs[0]["on_code"]);
