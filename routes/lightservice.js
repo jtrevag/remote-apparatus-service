@@ -5,7 +5,8 @@ var exec = require('child_process').exec;
 
 router.route('/')
 .get(function(req, res, next){
-    var roomName = req.params.room;  
+    var roomName = req.query.room;
+    console.log(req);
     var db = req.db;
     var collection = db.get('light_collection');
     if(roomName != null){
